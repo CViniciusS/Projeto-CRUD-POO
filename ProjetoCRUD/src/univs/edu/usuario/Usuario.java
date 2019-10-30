@@ -1,4 +1,3 @@
-
 package univs.edu.usuario;
 
 import javax.persistence.Column;
@@ -11,52 +10,34 @@ public class Usuario {
     
     @Id
     @GeneratedValue
-    private int idusuario;
+    private int idUsuario;
     
-    @Column(length = 20, nullable = true)
+    @Column(length = 20, nullable = false)
     private String login;
     
-    @Column(length = 20, nullable = true)
+    @Column(length = 20, nullable = false)
     private String senha;
 
-    /**
-     * @return the idusuario
-     */
-    public int getIdusuario() {
-        return idusuario;
+    public int getIdUsuario() {
+        return idUsuario;
     }
 
-    /**
-     * @param idusuario the idusuario to set
-     */
-    public void setIdusuario(int idusuario) {
-        this.idusuario = idusuario;
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
-    /**
-     * @return the login
-     */
     public String getLogin() {
         return login;
     }
 
-    /**
-     * @param login the login to set
-     */
     public void setLogin(String login) {
         this.login = login;
     }
 
-    /**
-     * @return the senha
-     */
     public String getSenha() {
         return senha;
     }
 
-    /**
-     * @param senha the senha to set
-     */
     public void setSenha(String senha) {
         this.senha = senha;
     }
