@@ -2,6 +2,7 @@ package univs.edu.usuario;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
@@ -15,11 +16,14 @@ public class UsuarioDAO {
     public void salvar(Usuario usuario) {
         sessao = HibernateUtil.getSessionFactory().openSession();
         transacao = sessao.beginTransaction();
-        if(usuario.getIdUsuario()==0){
-        sessao.save(usuario);
+        if(usuario.getIdUsuario() == 0){
+            sessao.save(usuario);
+            JOptionPane.showMessageDialog(null, "USUARIO CADASTRADO");
         }else{
             editar(usuario);
+            JOptionPane.showMessageDialog(null, "USUARIO EDITADO");
         }
+        
         transacao.commit();
         sessao.close();
     }
@@ -55,15 +59,17 @@ public class UsuarioDAO {
                 .add(Restrictions.eq("senha", senha)).uniqueResult();
         sessao.close();
         
-        return usuario != null ? usuario : null;
+        return usuario != null ? usuario : null; // SE O USUARIO FOR DIFERENTE DE NULO, RETORNE O USUARIO 
     }
     
-    public List<Usuario> listaUsuarios() {
+        public List<Usuario> listarUsuarios() {
         sessao = HibernateUtil.getSessionFactory().openSession();
         transacao = sessao.beginTransaction();
         List<Usuario> usuarios = sessao.createCriteria(Usuario.class).list();
         sessao.close();
         return usuarios;
     }
+        
+   
 
 }
