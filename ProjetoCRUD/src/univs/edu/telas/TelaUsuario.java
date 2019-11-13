@@ -181,7 +181,7 @@ public class TelaUsuario extends javax.swing.JFrame {
         usuario.setLogin(tfLogin.getText());
         usuario.setSenha(tfSenha.getText());
         dao.salvar(usuario);
-        JOptionPane.showMessageDialog(null, "Usuario cadastradoo");
+        JOptionPane.showMessageDialog(null, "Usuario cadastrado");
         limparCampos();
         }else{
             JOptionPane.showMessageDialog(null, "Preencha todos os campos!!");

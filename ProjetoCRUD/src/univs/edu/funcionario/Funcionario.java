@@ -18,31 +18,30 @@ import univs.edu.usuario.Usuario;
  */
 @Entity
 public class Funcionario {
-   
+
     @Id
-    @GeneratedValue  
-    
+    @GeneratedValue
+
     private int idFuncionario;
-    
-     @Column (length = 100, nullable = false)
+
+    @Column(length = 100, nullable = false)
     private String nomeFuncionario;
-    
-    @Column (length = 50, nullable = false)
+
+    @Column(length = 50, nullable = false)
     private String cargo;
-    
-    @Column (length = 20, nullable = false)
+
+    @Column(length = 20, nullable = false)
     private String cpf;
-    
-    @Column (length = 20, nullable = false)
+
+    @Column(length = 20, nullable = false)
     private double salario;
-    
-    
-    
-   
+
     @OneToOne
     private Usuario usuario;
-    
-    
+
+    /**
+     * @return the idFuncionario
+     */
     public int getIdFuncionario() {
         return idFuncionario;
     }
@@ -55,14 +54,18 @@ public class Funcionario {
     }
 
     /**
-     * @return the nomeFuncioonario
+     * @return the nomeFuncionario
      */
-   
+    public String getNomeFuncionario() {
+        return nomeFuncionario;
+    }
 
     /**
-     * @param nomeFuncioonario the nomeFuncioonario to set
+     * @param nomeFuncionario the nomeFuncionario to set
      */
-    
+    public void setNomeFuncionario(String nomeFuncionario) {
+        this.nomeFuncionario = nomeFuncionario;
+    }
 
     /**
      * @return the cargo
@@ -79,6 +82,20 @@ public class Funcionario {
     }
 
     /**
+     * @return the cpf
+     */
+    public String getCpf() {
+        return cpf;
+    }
+
+    /**
+     * @param cpf the cpf to set
+     */
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    /**
      * @return the salario
      */
     public double getSalario() {
@@ -90,14 +107,6 @@ public class Funcionario {
      */
     public void setSalario(double salario) {
         this.salario = salario;
-    }
-
-    Object getNomeFuncionario() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    Object getCpf() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -113,5 +122,5 @@ public class Funcionario {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-    
+
 }
