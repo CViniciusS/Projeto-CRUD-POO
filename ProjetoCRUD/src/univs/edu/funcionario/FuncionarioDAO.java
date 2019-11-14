@@ -19,10 +19,10 @@ public class FuncionarioDAO {
         transacao = sessao.beginTransaction();
         if(funcionario.getIdFuncionario()== 0){
             sessao.save(funcionario);
-            JOptionPane.showMessageDialog(null, "FUNCIONARIO CADASTRADO");
+            JOptionPane.showMessageDialog(null, "Funcionário Cadastrado");
         }else{
             editar(funcionario);
-            JOptionPane.showMessageDialog(null, "USUARIO EDITADO");
+            JOptionPane.showMessageDialog(null, "Funcionário Editado");
         }
         
         transacao.commit();

@@ -18,10 +18,9 @@ public class UsuarioDAO {
         transacao = sessao.beginTransaction();
         if(usuario.getIdUsuario() == 0){
             sessao.save(usuario);
-            JOptionPane.showMessageDialog(null, "USUARIO CADASTRADO");
         }else{
             editar(usuario);
-            JOptionPane.showMessageDialog(null, "USUARIO EDITADO");
+            JOptionPane.showMessageDialog(null, "Usuário Editado!");
         }
         
         transacao.commit();
