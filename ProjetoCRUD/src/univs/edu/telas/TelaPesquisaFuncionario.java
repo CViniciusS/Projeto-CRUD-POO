@@ -26,7 +26,7 @@ public class TelaPesquisaFuncionario extends javax.swing.JFrame {
     
     public void atualizarTabela(){
         FuncionarioTableModel tm = new FuncionarioTableModel(dao.listarFuncionarios()); 
-        tabelaUsuario.setModel(tm);
+        tabelaFuncionario.setModel(tm);
     }
 
     /**
@@ -43,7 +43,7 @@ public class TelaPesquisaFuncionario extends javax.swing.JFrame {
         tfLogin = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabelaUsuario = new javax.swing.JTable();
+        tabelaFuncionario = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -51,7 +51,7 @@ public class TelaPesquisaFuncionario extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel3.setText("Pesquisa Usuário");
+        jLabel3.setText("Pesquisa Funcionário");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Login:");
@@ -64,7 +64,7 @@ public class TelaPesquisaFuncionario extends javax.swing.JFrame {
 
         jButton1.setText("Pesquisar");
 
-        tabelaUsuario.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaFuncionario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -75,7 +75,7 @@ public class TelaPesquisaFuncionario extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tabelaUsuario);
+        jScrollPane1.setViewportView(tabelaFuncionario);
 
         jButton2.setText("Excluir");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -116,17 +116,16 @@ public class TelaPesquisaFuncionario extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel3))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tfLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)))
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton1)
                         .addGap(42, 42, 42))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(94, 94, 94)
+                .addComponent(jLabel3)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,11 +155,11 @@ public class TelaPesquisaFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_tfLoginActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       int linha = tabelaUsuario.getSelectedRow(); //PARA CAPTURAR A LINHA SELECIONADA, FOI CRIADO UMA VARIAVEL PARA RECEBER ESSA LINHA
+       int linha = tabelaFuncionario.getSelectedRow(); //PARA CAPTURAR A LINHA SELECIONADA, FOI CRIADO UMA VARIAVEL PARA RECEBER ESSA LINHA
        if(linha == -1){ //POR PADRAO A LINHA DA TEBELA JÁ VEM COM -1
            JOptionPane.showMessageDialog(null, "SELECIONE UMA LINHA");
         }else if(JOptionPane.showConfirmDialog(null, "DESEJA REALMENTE EXCLUIR ESTÉ FUNCIONARIO", "EXCLUIR FUNCIONÁRIO", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
-          funcionario = dao.pesquisar((int) tabelaUsuario.getValueAt(linha, 0));
+          funcionario = dao.pesquisar((int) tabelaFuncionario.getValueAt(linha, 0));
           dao.excluir(funcionario);
           atualizarTabela();
           JOptionPane.showMessageDialog(null, "FUNCIONÁRIO EXCLUIDO!!!");
@@ -168,16 +167,18 @@ public class TelaPesquisaFuncionario extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-
+        TelaFuncionario tela = new TelaFuncionario();
+        tela.setVisible(true);
         dispose();
+        
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        int linha = tabelaUsuario.getSelectedRow(); //PARA CAPTURAR A LINHA SELECIONADA, FOI CRIADO UMA VARIAVEL PARA RECEBER ESSA LINHA
+        int linha = tabelaFuncionario.getSelectedRow(); //PARA CAPTURAR A LINHA SELECIONADA, FOI CRIADO UMA VARIAVEL PARA RECEBER ESSA LINHA
        if(linha == -1){ //POR PADRAO A LINHA DA TEBELA JÁ VEM COM -1
            JOptionPane.showMessageDialog(null, "SELECIONE UMA LINHA");
         }else{
-            funcionario = dao.pesquisar((int) tabelaUsuario.getValueAt(linha, 0));
+            funcionario = dao.pesquisar((int) tabelaFuncionario.getValueAt(linha, 0));
             TelaFuncionario tela = new TelaFuncionario(); //INSTACIANDO A TELA DE USUARIO, POREM AINDA NAO ESTÁ VISIVEL
             tela.funcionario = funcionario;
             tela.preencherFuncionario();
@@ -231,7 +232,7 @@ public class TelaPesquisaFuncionario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tabelaUsuario;
+    private javax.swing.JTable tabelaFuncionario;
     private javax.swing.JTextField tfLogin;
     // End of variables declaration//GEN-END:variables
 }

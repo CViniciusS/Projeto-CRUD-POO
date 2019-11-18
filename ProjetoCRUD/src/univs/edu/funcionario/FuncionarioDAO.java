@@ -48,7 +48,7 @@ public class FuncionarioDAO {
     public Funcionario pesquisar(int id) {
         sessao = HibernateUtil.getSessionFactory().openSession();
         transacao = sessao.beginTransaction();
-        Funcionario funcionario = (Funcionario) sessao.createCriteria(Usuario.class).add(Restrictions.eq("idFuncionario", id)).uniqueResult();
+        Funcionario funcionario = (Funcionario) sessao.createCriteria(Funcionario.class).add(Restrictions.eq("idFuncionario", id)).uniqueResult();
         sessao.close();
         return funcionario;
     }
@@ -61,6 +61,18 @@ public class FuncionarioDAO {
         List<Funcionario> funcionarios = sessao.createCriteria(Funcionario.class).list();
         sessao.close();
         return funcionarios;
+    }
+        
+        
+        
+        public Funcionario autenticarFuncionario(String login, String senha) {
+        sessao = HibernateUtil.getSessionFactory().openSession();
+        transacao = sessao.beginTransaction();
+        Funcionario funcionario = (Funcionario) sessao.createCriteria(Funcionario.class).add(Restrictions.eq("usuario.login", login))
+                .add(Restrictions.eq("usuario.senha", senha)).uniqueResult();
+        sessao.close();
+        
+        return funcionario != null ? funcionario : null; // SE O USUARIO FOR DIFERENTE DE NULO, RETORNE O USUARIO 
     }
         
    
